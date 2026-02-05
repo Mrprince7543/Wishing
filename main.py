@@ -2,17 +2,16 @@ from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# Full Single File Script: 5 Pages with Animations & Shayari
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special for Miss Zoe ❤️</title>
+    <title>For Miss Zoe ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         body {
             background: #0f0c29;
             background: linear-gradient(135deg, #24243e, #302b63, #0f0c29, #4b1248);
@@ -33,7 +32,19 @@ HTML_TEMPLATE = """
             100% { background-position: 0% 50%; }
         }
 
-        /* Screen Transitions */
+        /* Custom Heart Cursor */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: #ff4d6d;
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px #ff4d6d;
+            transition: transform 0.1s;
+        }
+
         .screen {
             display: none;
             text-align: center;
@@ -41,17 +52,16 @@ HTML_TEMPLATE = """
             width: 90%;
             max-width: 500px;
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 30px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            animation: slideUp 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
-        .active { display: block; }
+        .active { display: block; animation: zoomIn 0.8s ease forwards; }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         h1 {
@@ -62,31 +72,25 @@ HTML_TEMPLATE = """
             margin-bottom: 20px;
         }
 
-        .shayari {
+        .typing-text {
             font-style: italic;
             font-size: 1.1rem;
-            line-height: 1.6;
             color: #ffb3c1;
             margin-bottom: 30px;
-            min-height: 80px;
+            min-height: 60px;
         }
 
-        /* Heart Animation */
         .heart-main {
             font-size: 80px;
-            color: #ff4d6d;
             animation: heartbeat 1.2s infinite;
             margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px #ff4d6d);
+            display: inline-block;
         }
         @keyframes heartbeat {
-            0% { transform: scale(1); }
-            20% { transform: scale(1.3); }
-            40% { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
-        /* Buttons */
-        .btn-group { display: flex; justify-content: center; gap: 15px; }
         .btn {
             background: #ff4d6d;
             color: white;
@@ -96,116 +100,142 @@ HTML_TEMPLATE = """
             font-size: 1rem;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
             font-weight: 600;
+            z-index: 100;
         }
-        .btn:hover {
-            background: #ff758f;
-            transform: scale(1.05);
-        }
-        .btn-back { background: rgba(255,255,255,0.1); }
+        .btn:hover { background: #ff758f; transform: scale(1.1); }
 
-        /* Floating Particles */
+        /* Prank No Button */
+        #noBtn {
+            position: relative;
+            background: #555;
+        }
+
         .particle {
             position: absolute;
-            color: #ff4d6d;
             pointer-events: none;
             z-index: -1;
             animation: floatUp 4s linear infinite;
         }
         @keyframes floatUp {
-            from { transform: translateY(110vh) rotate(0deg); opacity: 1; }
-            to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+            from { transform: translateY(110vh); opacity: 1; }
+            to { transform: translateY(-10vh); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
+    <div id="cursor"></div>
+    
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
+
     <div id="page1" class="screen active">
         <div class="heart-main">❤️</div>
         <h1>Hi Miss Zoe!</h1>
-        <div class="shayari">
-            "Aapki ek jhalak ke liye taraste hain,<br>
-            Hum har pal bas aapki raah takte hain."
-        </div>
-        <button class="btn" onclick="showPage(2)">Aage Dekho ✨</button>
+        <p class="typing-text" id="type1"></p>
+        <button class="btn" onclick="startApp()">Enter Her Heart ✨</button>
     </div>
 
     <div id="page2" class="screen">
-        <div class="heart-main">✨</div>
+        <div class="heart-main">🌹</div>
         <h1>Aapki Smile...</h1>
-        <div class="shayari">
-            "Tumhari muskurahat jaise koi pyaara khwaab hai,<br>
-            Pure jahaan mein Zoe, tumhara koi jawaab nahi."
-        </div>
-        <div class="btn-group">
-            <button class="btn btn-back" onclick="showPage(1)">Piche</button>
-            <button class="btn" onclick="showPage(3)">Next 🌹</button>
-        </div>
+        <p class="typing-text" id="type2"></p>
+        <button class="btn" onclick="nextPage(3)">Aage Dekho</button>
     </div>
 
     <div id="page3" class="screen">
-        <div class="heart-main">🌟</div>
-        <h1>Har Pal Khaas</h1>
-        <div class="shayari">
-            "Phoolon se haseen tumhari adaa hai,<br>
-            Aapko dekh kar hi dil ko milta sukoon hai."
-        </div>
-        <div class="btn-group">
-            <button class="btn btn-back" onclick="showPage(2)">Piche</button>
-            <button class="btn" onclick="showPage(4)">Aur Kuch... 🎁</button>
-        </div>
+        <div class="heart-main">✨</div>
+        <h1>Sabse Khaas</h1>
+        <p class="typing-text" id="type3"></p>
+        <button class="btn" onclick="nextPage(4)">Aur Kuch?</button>
     </div>
 
     <div id="page4" class="screen">
-        <div class="heart-main">🔥</div>
-        <h1>Sabse Alag</h1>
-        <div class="shayari">
-            "Hazaaron milenge chehre is bheed mein,<br>
-            Par humara dil toh sirf 'Zoe' pe fida hai."
-        </div>
-        <div class="btn-group">
-            <button class="btn btn-back" onclick="showPage(3)">Piche</button>
-            <button class="btn" onclick="showPage(5)">Final Surprise 💖</button>
-        </div>
+        <div class="heart-main">💖</div>
+        <h1>Sirf Tum</h1>
+        <p class="typing-text" id="type4"></p>
+        <button class="btn" onclick="nextPage(5)">Final Surprise</button>
     </div>
 
     <div id="page5" class="screen">
-        <div class="heart-main">💝</div>
-        <h1>Happy Valentine's Day</h1>
-        <div class="shayari">
-            "Will you make this day special by being mine?<br>
-            Happy Valentine's Day, Miss Zoe!"
-        </div>
-        <div class="btn-group">
-            <button class="btn btn-back" onclick="showPage(4)">Wapas</button>
-            <button class="btn" onclick="alert('Yay! ❤️ I Love You Zoe!')">Yes! 💍</button>
+        <div class="heart-main">💍</div>
+        <h1>Will You?</h1>
+        <p class="typing-text">Will you make this Valentine's Day the best one ever, Miss Zoe?</p>
+        <div style="display:flex; justify-content:center; gap:20px; position:relative;">
+            <button class="btn" onclick="alert('Yay! ❤️ Zoe, You made my day!')">Yes! ❤️</button>
+            <button class="btn" id="noBtn" onmouseover="moveNoButton()">No</button>
         </div>
     </div>
 
     <script>
-        function showPage(pageNumber) {
-            // Hide all screens
-            const screens = document.querySelectorAll('.screen');
-            screens.forEach(s => s.classList.remove('active'));
-            
-            // Show requested screen
-            document.getElementById('page' + pageNumber).classList.add('active');
+        // Cursor Follower
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        const messages = {
+            type1: "Aapke liye ek chota sa tohfa... Kya aap taiyar hain?",
+            type2: "Tumhari muskurahat jaise koi pyaara khwaab hai, Zoe tumhara koi jawaab nahi.",
+            type3: "Hazaaron milenge chehre is bheed mein, Par humara dil toh sirf aap pe fida hai.",
+            type4: "Zindagi me aap aaye, baki sab bhul gaye. You are truly unique!"
+        };
+
+        function typeEffect(elementId, text) {
+            let i = 0;
+            const el = document.getElementById(elementId);
+            el.innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 50);
+                }
+            }
+            type();
         }
 
-        // Particle Heart Generator
-        function createParticle() {
-            const p = document.createElement('div');
-            p.classList.add('particle');
-            const hearts = ['❤️', '💖', '💗', '🌹', '✨'];
-            p.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.fontSize = Math.random() * 20 + 15 + 'px';
-            p.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 4000);
+        function startApp() {
+            document.getElementById('bgMusic').play();
+            nextPage(2);
         }
-        setInterval(createParticle, 200);
+
+        function nextPage(num) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('page' + num).classList.add('active');
+            if(messages['type'+num]) {
+                typeEffect('type'+num, messages['type'+num]);
+            }
+        }
+
+        // Prank: Move No Button
+        function moveNoButton() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 100);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // Floating Hearts
+        function createHeart() {
+            const h = document.createElement('div');
+            h.classList.add('particle');
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.fontSize = Math.random() * 20 + 10 + 'px';
+            h.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 4000);
+        }
+        setInterval(createHeart, 200);
+
+        // Initial Typing
+        typeEffect('type1', messages.type1);
     </script>
 </body>
 </html>
@@ -216,5 +246,4 @@ def home():
     return render_template_string(HTML_TEMPLATE)
 
 if __name__ == '__main__':
-    # Running on 0.0.0.0:5000
     app.run(host='0.0.0.0', port=5000)
