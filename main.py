@@ -2,265 +2,232 @@ from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# The Ultimate Cyber-Love Terminal Script
+# Killer "Dangerous" Neon Edition Script
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERMINAL: ZOE_SECRET_ACCESS</title>
+    <title>UNSTOPPABLE LOVE | ZOE ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-pink: #ff0055;
             --neon-blue: #00fbff;
-            --bg-black: #050505;
+            --bg-dark: #050505;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         
         body {
-            background-color: var(--bg-black);
+            background-color: var(--bg-dark);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Orbitron', sans-serif;
             overflow: hidden;
-            color: white;
+            perspective: 1000px;
         }
 
-        /* Matrix Rain Effect */
-        canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
+        /* Dangerous Animated Background */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 0, 85, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 0, 85, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            animation: moveGrid 20s linear infinite;
+        }
+        @keyframes moveGrid {
+            from { transform: translateY(0); }
+            to { transform: translateY(50px); }
+        }
 
-        /* Custom Laser Cursor */
+        /* Custom Neon Cursor */
         #cursor {
             position: fixed;
-            width: 12px; height: 12px;
-            background: #fff;
+            width: 15px; height: 15px;
+            background: var(--neon-pink);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
-            box-shadow: 0 0 15px #fff, 0 0 30px var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink);
             transform: translate(-50%, -50%);
         }
 
-        /* Scan Line Effect */
-        .scan-line {
-            position: absolute;
-            width: 100%;
-            height: 4px;
-            background: var(--neon-pink);
-            box-shadow: 0 0 20px var(--neon-pink);
-            top: 0;
-            z-index: 5;
-            animation: scan 3s linear infinite;
-            opacity: 0.5;
-        }
-        @keyframes scan {
-            0% { top: 0; }
-            100% { top: 100%; }
-        }
-
+        /* The "Dangerous" Card */
         .neon-card {
             position: relative;
             width: 90%;
-            max-width: 480px;
+            max-width: 500px;
             padding: 40px;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.8);
             border: 2px solid var(--neon-pink);
-            border-radius: 5px;
-            box-shadow: 0 0 25px var(--neon-pink), inset 0 0 15px var(--neon-pink);
+            border-radius: 20px;
+            box-shadow: 0 0 20px var(--neon-pink), inset 0 0 15px var(--neon-pink);
             text-align: center;
-            overflow: hidden;
+            transform-style: preserve-3d;
+            animation: floatCard 4s ease-in-out infinite;
         }
 
-        /* Passcode Screen */
-        #passcode-screen { display: block; }
-        .input-code {
-            background: transparent;
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 10px;
-            text-align: center;
-            font-size: 1.5rem;
-            width: 150px;
-            margin: 20px 0;
-            outline: none;
-        }
-
-        /* Screens */
-        .screen { display: none; }
-        .active { display: block; animation: glitch 0.2s linear; }
-
-        @keyframes glitch {
-            0% { transform: translate(2px, -2px); }
-            25% { transform: translate(-2px, 2px); }
-            50% { transform: translate(2px, 2px); }
-            100% { transform: translate(0); }
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0) rotateX(2deg) rotateY(2deg); }
+            50% { transform: translateY(-15px) rotateX(-2deg) rotateY(-2deg); }
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            text-shadow: 0 0 15px var(--neon-pink);
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
             margin-bottom: 20px;
         }
 
         .typing-text {
+            font-size: 1.1rem;
             color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
             min-height: 80px;
             line-height: 1.6;
             margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
+        /* Dangerous Glow Buttons */
         .btn {
             background: transparent;
-            color: white;
+            color: #fff;
             border: 1px solid var(--neon-pink);
-            padding: 12px 30px;
-            font-family: 'Orbitron';
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            letter-spacing: 2px;
-            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: 0.5s;
+            position: relative;
+            overflow: hidden;
             box-shadow: 0 0 10px var(--neon-pink);
-            transition: 0.3s;
         }
-        .btn:hover { background: var(--neon-pink); box-shadow: 0 0 30px var(--neon-pink); }
 
+        .btn:hover {
+            background: var(--neon-pink);
+            box-shadow: 0 0 50px var(--neon-pink);
+            transform: scale(1.1);
+        }
+
+        .screen { display: none; }
+        .active { display: block; animation: screenIn 0.5s ease-out; }
+
+        @keyframes screenIn {
+            from { opacity: 0; transform: rotateY(90deg); }
+            to { opacity: 1; transform: rotateY(0deg); }
+        }
+
+        /* Floating Skulls or Hearts */
         .particle {
             position: absolute;
             color: var(--neon-pink);
             pointer-events: none;
-            animation: moveUp 5s linear forwards;
+            animation: fall 5s linear forwards;
+            opacity: 0.8;
+            filter: blur(1px);
         }
-        @keyframes moveUp { from { bottom: -20px; opacity: 1; } to { bottom: 100vh; opacity: 0; } }
+        @keyframes fall {
+            to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+
+        #noBtn { transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     </style>
 </head>
 <body>
 
-    <canvas id="matrix"></canvas>
+    <div class="bg-grid"></div>
     <div id="cursor"></div>
 
     <audio id="bgMusic" loop>
-        <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tanishk_Bagchi/Raataan_Lambiyan.mp3" type="audio/mpeg">
+        <source src="https://www.bensound.com/bensound-music/bensound-highoctane.mp3" type="audio/mpeg">
     </audio>
 
     <div class="neon-card">
-        <div class="scan-line"></div>
-        
-        <div id="passcode-screen" class="screen active">
-            <h2 style="color: var(--neon-blue); font-size: 0.9rem;">ENCRYPTED ACCESS ONLY</h2>
-            <input type="password" id="passInput" class="input-code" placeholder="****">
-            <br>
-            <button class="btn" onclick="checkPass()">UNLOCK</button>
-            <p id="errorMsg" style="color: red; margin-top: 10px; font-size: 0.7rem;"></p>
-        </div>
-
-        <div id="page1" class="screen">
-            <h2 style="font-size: 0.8rem; color: var(--neon-blue);">SYSTEM DECODED</h2>
-            <h1>Hi Zoe...</h1>
+        <div id="page1" class="screen active">
+            <h1 style="font-size: 1.5rem; font-family: 'Orbitron'; margin-bottom: 5px; color: var(--neon-blue);">SYSTEM INITIALIZED</h1>
+            <h1>Miss Zoe</h1>
             <p class="typing-text" id="type1"></p>
-            <button class="btn" onclick="startApp()">EXECUTE LOVE</button>
+            <button class="btn" onclick="startApp()">EXECUTE LOVE ✨</button>
         </div>
 
         <div id="page2" class="screen">
             <h1>The Smile</h1>
             <p class="typing-text" id="type2"></p>
-            <button class="btn" onclick="nextPage(3)">DEEP SCAN</button>
+            <button class="btn" onclick="nextPage(3)">NEXT LEVEL</button>
         </div>
 
         <div id="page3" class="screen">
-            <h1>Unique Soul</h1>
+            <h1>Lethal Beauty</h1>
             <p class="typing-text" id="type3"></p>
-            <button class="btn" onclick="nextPage(4)">HEART STATUS</button>
+            <button class="btn" onclick="nextPage(4)">SCANNING HEART...</button>
+        </div>
+
+        <div id="page4" class="screen">
+            <h1>Connection</h1>
+            <p class="typing-text" id="type4"></p>
+            <button class="btn" onclick="nextPage(5)">FINAL PHASE</button>
         </div>
 
         <div id="page5" class="screen">
-            <h1>Will You?</h1>
-            <p class="typing-text">Zoe, access to my heart is forever granted to you. Will you be my Valentine?</p>
+            <h1>Be Mine?</h1>
+            <p class="typing-text">Zoe, access granted to my heart. Will you be my Valentine forever?</p>
             <div style="display:flex; justify-content:center; gap:20px; position:relative;">
-                <button class="btn" onclick="alert('ACCESS GRANTED FOREVER! ❤️')">YES</button>
-                <button class="btn" id="noBtn" style="border-color: #444;" onmouseover="moveNoButton()">NO</button>
+                <button class="btn" onclick="alert('ACCESS GRANTED! ❤️ Love you Zoe!')">YES</button>
+                <button class="btn" id="noBtn" style="border-color: #555; box-shadow: none;" onmouseover="moveNoButton()">NO</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Matrix Effect
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const letters = "01LOVEZOE01";
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function drawMatrix() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#ff0055";
-            ctx.font = fontSize + "px Orbitron";
-            for (let i = 0; i < drops.length; i++) {
-                const text = letters.charAt(Math.floor(Math.random() * letters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
-            }
-        }
-        setInterval(drawMatrix, 50);
-
-        // Cursor
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Passcode Check
-        function checkPass() {
-            const pass = document.getElementById('passInput').value;
-            if(pass === "1403") { // DEFAULT CODE
-                document.getElementById('passcode-screen').classList.remove('active');
-                document.getElementById('page1').classList.add('active');
-                typeEffect('type1', "> ACCESS GRANTED. Zoe, aapke liye ek lethal surprise load ho raha hai...");
-            } else {
-                document.getElementById('errorMsg').innerText = "ACCESS DENIED: WRONG KEY";
-            }
-        }
+        const messages = {
+            type1: "> WARNING: HIGH ATTENTION REQUIRED. Aapke liye ek bohot hi 'dangerous' surprise taiyar hai...",
+            type2: "> ANALYSIS: Aapki smile se zyada khatarnak weapon poori duniya mein nahi hai. Pure magic!",
+            type3: "> DATA: Hazaaron filters aur faces dekhe, par 'Zoe' jaisa unique encryption kahin nahi mila.",
+            type4: "> STATUS: Heart rate increasing... Har pal bas aapka khayal. System overloaded with love."
+        };
 
         function typeEffect(elementId, text) {
             let i = 0;
             const el = document.getElementById(elementId);
+            if(!el) return;
             el.innerHTML = "";
             function type() {
                 if (i < text.length) {
                     el.innerHTML += text.charAt(i);
                     i++;
-                    setTimeout(type, 40);
+                    setTimeout(type, 30);
                 }
             }
             type();
         }
 
         function startApp() {
-            document.getElementById('bgMusic').play();
+            document.getElementById('bgMusic').play().catch(() => {});
             nextPage(2);
         }
 
         function nextPage(num) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            const next = document.getElementById('page' + num);
-            if(next) next.classList.add('active');
-            
-            const msgs = {
-                2: "> ANALYSIS: Aapki smile se bada khatra meri stability ko aur kisi cheez se nahi hai.",
-                3: "> DATA: Encryption level 100. Zoe jaisa unique interface poore server mein nahi mila.",
-                4: "> STATUS: Connection Established. Heart beat syncing with Raataan Lambiyan..."
-            };
-            if(msgs[num]) typeEffect('type'+num, msgs[num]);
+            document.getElementById('page' + num).classList.add('active');
+            if(messages['type'+num]) {
+                typeEffect('type'+num, messages['type'+num]);
+            }
         }
 
         function moveNoButton() {
@@ -270,14 +237,20 @@ HTML_TEMPLATE = """
             btn.style.top = Math.random() * (window.innerHeight - 100) + 'px';
         }
 
-        setInterval(() => {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.innerHTML = '❤️';
-            p.style.left = Math.random() * 100 + 'vw';
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 5000);
-        }, 300);
+        function createHeart() {
+            const h = document.createElement('div');
+            h.classList.add('particle');
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.bottom = "-50px";
+            h.style.fontSize = Math.random() * 20 + 10 + 'px';
+            h.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 5000);
+        }
+        setInterval(createHeart, 150);
+
+        typeEffect('type1', messages.type1);
     </script>
 </body>
 </html>
@@ -288,4 +261,5 @@ def home():
     return render_template_string(HTML_TEMPLATE)
 
 if __name__ == '__main__':
+    # Host and Port settings
     app.run(host='0.0.0.0', port=5000)
