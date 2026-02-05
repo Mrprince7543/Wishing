@@ -8,15 +8,13 @@ HTML_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Miss Zoe ❤️</title>
+    <title>For My Queen - Zoe ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        
         body {
-            background: #0f0c29;
-            background: linear-gradient(135deg, #24243e, #302b63, #0f0c29, #4b1248);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: #050505;
             color: white;
             font-family: 'Poppins', sans-serif;
             height: 100vh;
@@ -26,151 +24,145 @@ HTML_TEMPLATE = """
             align-items: center;
         }
 
-        @keyframes gradientBG {
+        /* Animated Glowing Border Container */
+        .border-box {
+            position: relative;
+            width: 90%;
+            max-width: 450px;
+            padding: 5px;
+            background: linear-gradient(45deg, #ff4d6d, #ff758f, #c71585, #ff4d6d);
+            background-size: 400%;
+            border-radius: 25px;
+            animation: borderGlow 8s linear infinite;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.5);
+        }
+
+        @keyframes borderGlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* Custom Heart Cursor */
+        /* Glass Content Area */
+        .screen {
+            display: none;
+            background: rgba(15, 12, 41, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .active { display: block; animation: fadeIn 1s ease-in; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Cursor */
         #cursor {
-            width: 20px;
-            height: 20px;
-            background: #ff4d6d;
+            width: 25px;
+            height: 25px;
+            background: rgba(255, 77, 109, 0.8);
             position: fixed;
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
-            box-shadow: 0 0 10px #ff4d6d;
-            transition: transform 0.1s;
-        }
-
-        .screen {
-            display: none;
-            text-align: center;
-            padding: 30px;
-            width: 90%;
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .active { display: block; animation: zoomIn 0.8s ease forwards; }
-
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
+            box-shadow: 0 0 20px #ff4d6d;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
+            font-size: 3.2rem;
             color: #ff4d6d;
-            text-shadow: 0 0 15px rgba(255, 77, 109, 0.8);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
         .typing-text {
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #ffb3c1;
             margin-bottom: 30px;
-            min-height: 60px;
-        }
-
-        .heart-main {
-            font-size: 80px;
-            animation: heartbeat 1.2s infinite;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            min-height: 70px;
+            line-height: 1.5;
         }
 
         .btn {
-            background: #ff4d6d;
+            background: linear-gradient(to right, #ff4d6d, #ff758f);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 12px 35px;
             border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
             font-weight: 600;
-            z-index: 100;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+            transition: 0.4s;
         }
-        .btn:hover { background: #ff758f; transform: scale(1.1); }
+        .btn:hover { transform: scale(1.1); box-shadow: 0 0 25px #ff4d6d; }
 
-        /* Prank No Button */
-        #noBtn {
-            position: relative;
-            background: #555;
-        }
-
+        /* Floating Elements */
         .particle {
             position: absolute;
             pointer-events: none;
             z-index: -1;
-            animation: floatUp 4s linear infinite;
+            animation: float 5s linear infinite;
         }
-        @keyframes floatUp {
-            from { transform: translateY(110vh); opacity: 1; }
-            to { transform: translateY(-10vh); opacity: 0; }
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
     <div id="cursor"></div>
-    
     <audio id="bgMusic" loop>
         <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="page1" class="screen active">
-        <div class="heart-main">❤️</div>
-        <h1>Hi Miss Zoe!</h1>
-        <p class="typing-text" id="type1"></p>
-        <button class="btn" onclick="startApp()">Enter Her Heart ✨</button>
-    </div>
+    <div class="border-box">
+        <div id="page1" class="screen active">
+            <h1 style="font-size: 50px;">🌹</h1>
+            <h1>Miss Zoe</h1>
+            <p class="typing-text" id="type1"></p>
+            <button class="btn" onclick="startApp()">Open Your Heart ✨</button>
+        </div>
 
-    <div id="page2" class="screen">
-        <div class="heart-main">🌹</div>
-        <h1>Aapki Smile...</h1>
-        <p class="typing-text" id="type2"></p>
-        <button class="btn" onclick="nextPage(3)">Aage Dekho</button>
-    </div>
+        <div id="page2" class="screen">
+            <h1>The Smile...</h1>
+            <p class="typing-text" id="type2"></p>
+            <button class="btn" onclick="nextPage(3)">Continue 💖</button>
+        </div>
 
-    <div id="page3" class="screen">
-        <div class="heart-main">✨</div>
-        <h1>Sabse Khaas</h1>
-        <p class="typing-text" id="type3"></p>
-        <button class="btn" onclick="nextPage(4)">Aur Kuch?</button>
-    </div>
+        <div id="page3" class="screen">
+            <h1>Uniqueness</h1>
+            <p class="typing-text" id="type3"></p>
+            <button class="btn" onclick="nextPage(4)">Wait, more...</button>
+        </div>
 
-    <div id="page4" class="screen">
-        <div class="heart-main">💖</div>
-        <h1>Sirf Tum</h1>
-        <p class="typing-text" id="type4"></p>
-        <button class="btn" onclick="nextPage(5)">Final Surprise</button>
-    </div>
+        <div id="page4" class="screen">
+            <h1>True Feelings</h1>
+            <p class="typing-text" id="type4"></p>
+            <button class="btn" onclick="nextPage(5)">The Question 💍</button>
+        </div>
 
-    <div id="page5" class="screen">
-        <div class="heart-main">💍</div>
-        <h1>Will You?</h1>
-        <p class="typing-text">Will you make this Valentine's Day the best one ever, Miss Zoe?</p>
-        <div style="display:flex; justify-content:center; gap:20px; position:relative;">
-            <button class="btn" onclick="alert('Yay! ❤️ Zoe, You made my day!')">Yes! ❤️</button>
-            <button class="btn" id="noBtn" onmouseover="moveNoButton()">No</button>
+        <div id="page5" class="screen">
+            <h1>Be Mine?</h1>
+            <p class="typing-text">Zoe, will you make my world beautiful forever by being my Valentine?</p>
+            <div style="display:flex; justify-content:center; gap:15px; position:relative;">
+                <button class="btn" onclick="alert('I Knew it! ❤️ Love you forever Zoe!')">YES! ❤️</button>
+                <button class="btn" id="noBtn" style="background:#444;" onmouseover="moveNoButton()">NO</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Cursor Follower
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -178,21 +170,22 @@ HTML_TEMPLATE = """
         });
 
         const messages = {
-            type1: "Aapke liye ek chota sa tohfa... Kya aap taiyar hain?",
-            type2: "Tumhari muskurahat jaise koi pyaara khwaab hai, Zoe tumhara koi jawaab nahi.",
-            type3: "Hazaaron milenge chehre is bheed mein, Par humara dil toh sirf aap pe fida hai.",
-            type4: "Zindagi me aap aaye, baki sab bhul gaye. You are truly unique!"
+            type1: "Aapke liye kuch bohot khaas hai... Kya aap dekhna chahengi?",
+            type2: "Aapki ek smile poore din ki thakaan mita deti hai. Truly Magical!",
+            type3: "Hazaaron hain is duniya mein, par Zoe jaisa koi dusra nahi hai.",
+            type4: "Har pal aapka khayal, har dua mein aapka naam. Bas yahi hai dil ka haal."
         };
 
         function typeEffect(elementId, text) {
             let i = 0;
             const el = document.getElementById(elementId);
+            if(!el) return;
             el.innerHTML = "";
             function type() {
                 if (i < text.length) {
                     el.innerHTML += text.charAt(i);
                     i++;
-                    setTimeout(type, 50);
+                    setTimeout(type, 40);
                 }
             }
             type();
@@ -211,30 +204,25 @@ HTML_TEMPLATE = """
             }
         }
 
-        // Prank: Move No Button
         function moveNoButton() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 100);
             btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            btn.style.top = Math.random() * (window.innerHeight - 100) + 'px';
         }
 
-        // Floating Hearts
         function createHeart() {
             const h = document.createElement('div');
             h.classList.add('particle');
-            h.innerHTML = '❤️';
+            h.innerHTML = ['❤️', '💖', '✨', '🌹'][Math.floor(Math.random()*4)];
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.fontSize = Math.random() * 20 + 10 + 'px';
+            h.style.fontSize = Math.random() * 20 + 15 + 'px';
             h.style.animationDuration = Math.random() * 2 + 3 + 's';
             document.body.appendChild(h);
-            setTimeout(() => h.remove(), 4000);
+            setTimeout(() => h.remove(), 5000);
         }
-        setInterval(createHeart, 200);
+        setInterval(createHeart, 250);
 
-        // Initial Typing
         typeEffect('type1', messages.type1);
     </script>
 </body>
