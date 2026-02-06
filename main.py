@@ -2,188 +2,162 @@ from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# Killer "Dangerous" Neon Edition Script
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNSTOPPABLE LOVE | ZOE ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>For My Queen - Zoe ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --neon-pink: #ff0055;
-            --neon-blue: #00fbff;
-            --bg-dark: #050505;
-        }
-
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         
         body {
-            background-color: var(--bg-dark);
+            background: #050505;
+            color: white;
+            font-family: 'Poppins', sans-serif;
             height: 100vh;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            overflow: hidden;
-            perspective: 1000px;
         }
 
-        /* Dangerous Animated Background */
-        .bg-grid {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255, 0, 85, 0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 0, 85, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            animation: moveGrid 20s linear infinite;
-        }
-        @keyframes moveGrid {
-            from { transform: translateY(0); }
-            to { transform: translateY(50px); }
+        /* Animated Glowing Border Container */
+        .border-box {
+            position: relative;
+            width: 90%;
+            max-width: 450px;
+            padding: 5px;
+            background: linear-gradient(45deg, #ff4d6d, #ff758f, #c71585, #ff4d6d);
+            background-size: 400%;
+            border-radius: 25px;
+            animation: borderGlow 8s linear infinite;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.5);
         }
 
-        /* Custom Neon Cursor */
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glass Content Area */
+        .screen {
+            display: none;
+            background: rgba(15, 12, 41, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .active { display: block; animation: fadeIn 1s ease-in; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Cursor */
         #cursor {
+            width: 25px;
+            height: 25px;
+            background: rgba(255, 77, 109, 0.8);
             position: fixed;
-            width: 15px; height: 15px;
-            background: var(--neon-pink);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
-            box-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink);
+            box-shadow: 0 0 20px #ff4d6d;
             transform: translate(-50%, -50%);
-        }
-
-        /* The "Dangerous" Card */
-        .neon-card {
-            position: relative;
-            width: 90%;
-            max-width: 500px;
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid var(--neon-pink);
-            border-radius: 20px;
-            box-shadow: 0 0 20px var(--neon-pink), inset 0 0 15px var(--neon-pink);
-            text-align: center;
-            transform-style: preserve-3d;
-            animation: floatCard 4s ease-in-out infinite;
-        }
-
-        @keyframes floatCard {
-            0%, 100% { transform: translateY(0) rotateX(2deg) rotateY(2deg); }
-            50% { transform: translateY(-15px) rotateX(-2deg) rotateY(-2deg); }
+            transition: width 0.2s, height 0.2s;
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            color: #fff;
-            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
-            margin-bottom: 20px;
+            font-size: 3.2rem;
+            color: #ff4d6d;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
         .typing-text {
-            font-size: 1.1rem;
-            color: var(--neon-blue);
-            text-shadow: 0 0 5px var(--neon-blue);
-            min-height: 80px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #ffb3c1;
+            margin-bottom: 30px;
+            min-height: 70px;
+            line-height: 1.5;
         }
 
-        /* Dangerous Glow Buttons */
         .btn {
-            background: transparent;
-            color: #fff;
-            border: 1px solid var(--neon-pink);
-            padding: 15px 40px;
-            border-radius: 5px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
+            background: linear-gradient(to right, #ff4d6d, #ff758f);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            transition: 0.5s;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 10px var(--neon-pink);
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+            transition: 0.4s;
         }
+        .btn:hover { transform: scale(1.1); box-shadow: 0 0 25px #ff4d6d; }
 
-        .btn:hover {
-            background: var(--neon-pink);
-            box-shadow: 0 0 50px var(--neon-pink);
-            transform: scale(1.1);
-        }
-
-        .screen { display: none; }
-        .active { display: block; animation: screenIn 0.5s ease-out; }
-
-        @keyframes screenIn {
-            from { opacity: 0; transform: rotateY(90deg); }
-            to { opacity: 1; transform: rotateY(0deg); }
-        }
-
-        /* Floating Skulls or Hearts */
+        /* Floating Elements */
         .particle {
             position: absolute;
-            color: var(--neon-pink);
             pointer-events: none;
-            animation: fall 5s linear forwards;
-            opacity: 0.8;
-            filter: blur(1px);
+            z-index: -1;
+            animation: float 5s linear infinite;
         }
-        @keyframes fall {
-            to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
-
-        #noBtn { transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     </style>
 </head>
 <body>
 
-    <div class="bg-grid"></div>
     <div id="cursor"></div>
-
     <audio id="bgMusic" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-highoctane.mp3" type="audio/mpeg">
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="neon-card">
+    <div class="border-box">
         <div id="page1" class="screen active">
-            <h1 style="font-size: 1.5rem; font-family: 'Orbitron'; margin-bottom: 5px; color: var(--neon-blue);">SYSTEM INITIALIZED</h1>
+            <h1 style="font-size: 50px;">🌹</h1>
             <h1>Miss Zoe</h1>
             <p class="typing-text" id="type1"></p>
-            <button class="btn" onclick="startApp()">EXECUTE LOVE ✨</button>
+            <button class="btn" onclick="startApp()">Open Your Heart ✨</button>
         </div>
 
         <div id="page2" class="screen">
-            <h1>The Smile</h1>
+            <h1>The Smile...</h1>
             <p class="typing-text" id="type2"></p>
-            <button class="btn" onclick="nextPage(3)">NEXT LEVEL</button>
+            <button class="btn" onclick="nextPage(3)">Continue 💖</button>
         </div>
 
         <div id="page3" class="screen">
-            <h1>Lethal Beauty</h1>
+            <h1>Uniqueness</h1>
             <p class="typing-text" id="type3"></p>
-            <button class="btn" onclick="nextPage(4)">SCANNING HEART...</button>
+            <button class="btn" onclick="nextPage(4)">Wait, more...</button>
         </div>
 
         <div id="page4" class="screen">
-            <h1>Connection</h1>
+            <h1>True Feelings</h1>
             <p class="typing-text" id="type4"></p>
-            <button class="btn" onclick="nextPage(5)">FINAL PHASE</button>
+            <button class="btn" onclick="nextPage(5)">The Question 💍</button>
         </div>
 
         <div id="page5" class="screen">
             <h1>Be Mine?</h1>
-            <p class="typing-text">Zoe, access granted to my heart. Will you be my Valentine forever?</p>
-            <div style="display:flex; justify-content:center; gap:20px; position:relative;">
-                <button class="btn" onclick="alert('ACCESS GRANTED! ❤️ Love you Zoe!')">YES</button>
-                <button class="btn" id="noBtn" style="border-color: #555; box-shadow: none;" onmouseover="moveNoButton()">NO</button>
+            <p class="typing-text">Zoe, will you make my world beautiful forever by being my Valentine?</p>
+            <div style="display:flex; justify-content:center; gap:15px; position:relative;">
+                <button class="btn" onclick="alert('I Knew it! ❤️ Love you forever Zoe!')">YES! ❤️</button>
+                <button class="btn" id="noBtn" style="background:#444;" onmouseover="moveNoButton()">NO</button>
             </div>
         </div>
     </div>
@@ -196,10 +170,10 @@ HTML_TEMPLATE = """
         });
 
         const messages = {
-            type1: "> WARNING: HIGH ATTENTION REQUIRED. Aapke liye ek bohot hi 'dangerous' surprise taiyar hai...",
-            type2: "> ANALYSIS: Aapki smile se zyada khatarnak weapon poori duniya mein nahi hai. Pure magic!",
-            type3: "> DATA: Hazaaron filters aur faces dekhe, par 'Zoe' jaisa unique encryption kahin nahi mila.",
-            type4: "> STATUS: Heart rate increasing... Har pal bas aapka khayal. System overloaded with love."
+            type1: "Aapke liye kuch bohot khaas hai... Kya aap dekhna chahengi?",
+            type2: "Aapki ek smile poore din ki thakaan mita deti hai. Truly Magical!",
+            type3: "Hazaaron hain is duniya mein, par Zoe jaisa koi dusra nahi hai.",
+            type4: "Har pal aapka khayal, har dua mein aapka naam. Bas yahi hai dil ka haal."
         };
 
         function typeEffect(elementId, text) {
@@ -211,14 +185,14 @@ HTML_TEMPLATE = """
                 if (i < text.length) {
                     el.innerHTML += text.charAt(i);
                     i++;
-                    setTimeout(type, 30);
+                    setTimeout(type, 40);
                 }
             }
             type();
         }
 
         function startApp() {
-            document.getElementById('bgMusic').play().catch(() => {});
+            document.getElementById('bgMusic').play();
             nextPage(2);
         }
 
@@ -240,15 +214,14 @@ HTML_TEMPLATE = """
         function createHeart() {
             const h = document.createElement('div');
             h.classList.add('particle');
-            h.innerHTML = '❤️';
+            h.innerHTML = ['❤️', '💖', '✨', '🌹'][Math.floor(Math.random()*4)];
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.bottom = "-50px";
-            h.style.fontSize = Math.random() * 20 + 10 + 'px';
+            h.style.fontSize = Math.random() * 20 + 15 + 'px';
             h.style.animationDuration = Math.random() * 2 + 3 + 's';
             document.body.appendChild(h);
             setTimeout(() => h.remove(), 5000);
         }
-        setInterval(createHeart, 150);
+        setInterval(createHeart, 250);
 
         typeEffect('type1', messages.type1);
     </script>
@@ -261,5 +234,4 @@ def home():
     return render_template_string(HTML_TEMPLATE)
 
 if __name__ == '__main__':
-    # Host and Port settings
     app.run(host='0.0.0.0', port=5000)
