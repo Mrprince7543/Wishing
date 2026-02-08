@@ -2,7 +2,7 @@ from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# Ultra-Smooth "Rehan Loves Zoe" Special Edition
+# Premium "Neon Footer" & Love Song Edition
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,6 @@ HTML_TEMPLATE = """
             font-size: 1.6rem;
             color: #fff;
             letter-spacing: 3px;
-            text-transform: uppercase;
         }
 
         /* MAIN CONTAINER - CUSTOM BACKGROUND */
@@ -75,18 +74,16 @@ HTML_TEMPLATE = """
             flex-direction: column;
             justify-content: center;
             overflow: hidden;
-            will-change: transform; 
         }
 
         .glass-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.35); /* Image visibility balance */
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(1px);
             z-index: -1;
         }
 
-        /* Ultra Large Vibrant Text */
         h1 {
             font-family: 'Dancing Script', cursive;
             font-size: 5rem;
@@ -102,42 +99,48 @@ HTML_TEMPLATE = """
             min-height: 80px;
             text-shadow: 2px 2px 10px #000;
             padding: 0 10px;
-            line-height: 1.3;
         }
 
-        /* Footer Message Box */
+        /* --- NEW ATTRACTIVE FOOTER BOX --- */
         .footer-box {
-            margin-top: 15px;
-            background: #fff;
-            padding: 12px 30px;
+            margin-top: 20px;
+            background: linear-gradient(45deg, #ff4d6d, #ff758f);
+            padding: 15px 40px;
             border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 77, 109, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.3);
             z-index: 10;
-            border: 2px solid #ff4d6d;
+            position: relative;
+            animation: float 3s infinite ease-in-out;
         }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
         .footer-box p {
             font-weight: 800;
-            color: #ff4d6d;
-            font-size: 1.1rem;
+            color: #fff;
+            font-size: 1.2rem;
             text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* High Performance Buttons */
         .btn {
             background: #ff4d6d;
             color: white;
             border: 2px solid #fff;
-            padding: 15px 40px;
+            padding: 15px 45px;
             border-radius: 50px;
             font-size: 1.2rem;
             font-weight: 800;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
-            transition: transform 0.2s ease;
+            transition: 0.3s;
         }
-        .btn:active { transform: scale(0.9); }
 
-        /* Heart Cursor */
         #cursor {
             position: fixed;
             width: 22px; height: 22px;
@@ -149,13 +152,11 @@ HTML_TEMPLATE = """
             filter: drop-shadow(0 0 5px #ff4d6d);
         }
 
-        /* Optimized Performance Particles */
         .heart-float {
             position: absolute;
             color: #fff;
             pointer-events: none;
             animation: moveUp 5s linear forwards;
-            will-change: transform;
             z-index: 1;
         }
         @keyframes moveUp {
@@ -173,8 +174,8 @@ HTML_TEMPLATE = """
 
     <div id="cursor"></div>
     <audio id="bgMusic" loop>
-        <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tanishk_Bagchi/Raataan_Lambiyan.mp3" type="audio/mpeg">
-    </audio>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
 
     <div class="top-title">Happy Valentine's Day Zoe 😘</div>
 
@@ -188,7 +189,7 @@ HTML_TEMPLATE = """
         <div id="page1" class="screen active">
             <h1>Hi Jaan ❤️</h1>
             <p class="typing-text" id="type1"></p>
-            <button class="btn" onclick="startApp()">START SURPRISE ✨</button>
+            <button class="btn" onclick="startApp()">SURPRISE DEKHO ✨</button>
         </div>
 
         <div id="page2" class="screen">
@@ -199,16 +200,16 @@ HTML_TEMPLATE = """
 
         <div id="page3" class="screen">
             <h1 style="font-size: 3.5rem;">Will You?</h1>
-            <p class="typing-text">Zoe, meri har dua aapke naam se shuru hoti hai. Will you be my Valentine forever? ❤️</p>
+            <p class="typing-text">Zoe, meri har dua aapke naam se shuru hoti hai. Will you be mine forever? ❤️</p>
             <div style="display:flex; justify-content:center; gap:15px; position:relative;">
                 <button class="btn" onclick="alert('I Love You Too, Zoe Jaan! 😘😘😘')">YES! ❤️</button>
-                <button class="btn" id="noBtn" style="background:#444;" onmouseover="moveNoButton()">NO</button>
+                <button class="btn" id="noBtn" style="background:#444; border:none;" onmouseover="moveNoButton()">NO</button>
             </div>
         </div>
     </div>
 
     <div class="footer-box">
-        <p>I LOVE YOU MERI JAAN ZOE VERMA 😘😘😘</p>
+        <p>💖 I LOVE YOU MERI JAAN ZOE VERMA 💖</p>
     </div>
 
     <script>
@@ -219,8 +220,8 @@ HTML_TEMPLATE = """
         });
 
         const messages = {
-            type1: "Aapke liye ek chota sa surprise taiyar hai... Ready ho?",
-            type2: "Aapki smile meri poori duniya hai, aur aap meri zindagi ka sabse haseen hissa ho."
+            type1: "Aapke liye ye chota sa digital tohfa... Start button dabao!",
+            type2: "Aapki smile meri duniya hai, aur aap meri zindagi ka sabse pyara hissa ho."
         };
 
         function typeEffect(elementId, text) {
@@ -238,7 +239,10 @@ HTML_TEMPLATE = """
         }
 
         function startApp() {
-            document.getElementById('bgMusic').play().catch(()=>{});
+            // Song plays on first interaction
+            const music = document.getElementById('bgMusic');
+            music.src = "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tanishk_Bagchi/Raataan_Lambiyan.mp3"; 
+            music.play().catch(()=>{});
             nextPage(2);
         }
 
@@ -255,7 +259,6 @@ HTML_TEMPLATE = """
             btn.style.top = (Math.random() * (window.innerHeight - 100)) + 'px';
         }
 
-        // Optimized Heart Particle Creator
         function createHeart() {
             if (document.querySelectorAll('.heart-float').length > 12) return; 
             const h = document.createElement('div');
