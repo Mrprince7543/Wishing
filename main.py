@@ -218,6 +218,24 @@ HTML_TEMPLATE = """
                 <p class="typing-text" id="type2"></p>
                 <button class="btn" onclick="nextPage(3)">Aage Dekho 🌹</button>
             </div>
+            
+            <div id="page2" class="screen">
+                <h1 style="font-size: 3rem;">Beautiful</h1>
+                <p class="typing-text" id="type2"></p>
+                <button class="btn" onclick="nextPage(3)">Aage Dekho 🌹</button>
+            </div>
+            
+            <div id="page2" class="screen">
+                <h1 style="font-size: 3rem;">Beautiful</h1>
+                <p class="typing-text" id="type2"></p>
+                <button class="btn" onclick="nextPage(3)">Aage Dekho 🌹</button>
+            </div>
+            
+            <div id="page2" class="screen">
+                <h1 style="font-size: 3rem;">Beautiful</h1>
+                <p class="typing-text" id="type2"></p>
+                <button class="btn" onclick="nextPage(3)">Aage Dekho 🌹</button>
+            </div>
 
             <div id="page3" class="screen">
                 <h1 style="font-size: 2.8rem;">Be Mine?</h1>
