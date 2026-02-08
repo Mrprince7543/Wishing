@@ -2,14 +2,14 @@ from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# Stable & Attractive Version (No Zooming, Perfect Alignment)
+# Super Smooth & Performance Optimized Version
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Zoe Verma ❤️</title>
+    <title>Zoe Verma Special ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
@@ -17,117 +17,130 @@ HTML_TEMPLATE = """
         body {
             background: #ff758f;
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
-            padding: 20px;
+            padding: 15px;
+            will-change: background;
         }
 
-        /* 1. TOP TITLE - STABLE */
+        /* Optimized Floating Hearts */
+        .heart-float {
+            position: absolute;
+            color: #ff4d6d;
+            pointer-events: none;
+            animation: moveUp 5s linear forwards;
+            will-change: transform, opacity;
+            z-index: 1;
+        }
+        @keyframes moveUp {
+            0% { transform: translateY(110vh) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(-15vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Top Title - Smooth Glow */
         .top-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: #fff;
             text-align: center;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 10px #ff0055;
-            z-index: 100;
+            text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+            z-index: 10;
         }
 
-        /* 2. REHAN LOVES ZOE BOX - FIXED SIZE */
+        /* Header Box - GPU Friendly Pulse */
         .header-box {
             background: #ff4d6d;
-            border: 3px solid #fff;
-            padding: 15px 35px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
-            z-index: 100;
-            text-align: center;
+            border: 2px solid #fff;
+            padding: 12px 25px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+            animation: softPulse 3s infinite ease-in-out;
+            z-index: 10;
+        }
+        @keyframes softPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
         }
 
         .header-box h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #fff;
             letter-spacing: 2px;
         }
 
-        /* 3. MAIN CONTAINER - MAINTAINED SIZE */
+        /* Main Container - Balanced Sizing */
         .love-card {
             position: relative;
             width: 100%;
-            max-width: 550px;
-            min-height: 380px;
-            padding: 40px 25px;
+            max-width: 500px;
+            min-height: 350px;
+            padding: 30px 20px;
             background: rgba(255, 255, 255, 0.98);
-            border-radius: 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            border: 3px solid #ffb3c1;
+            border-radius: 25px;
+            border: 2px solid #ffb3c1;
             text-align: center;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            z-index: 5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: #ff4d6d;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .typing-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #444;
-            min-height: 70px;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            min-height: 60px;
+            margin-bottom: 25px;
+            line-height: 1.4;
         }
 
-        /* 4. FOOTER BOX - ADJUSTED */
+        /* Footer Box */
         .footer-box {
-            margin-top: 25px;
+            margin-top: 15px;
             background: #fff;
-            border: 2px dashed #ff4d6d;
-            padding: 12px 30px;
-            border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
-            z-index: 100;
+            border: 1px dashed #ff4d6d;
+            padding: 10px 20px;
+            border-radius: 40px;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.2);
+            z-index: 10;
         }
-
         .footer-box p {
             font-weight: 600;
             color: #ff4d6d;
-            font-size: 1.1rem;
-            text-align: center;
+            font-size: 0.95rem;
         }
 
-        /* Buttons */
+        /* Button Styling */
         .btn {
             background: #ff4d6d;
             color: white;
             border: none;
-            padding: 15px 40px;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
-            align-self: center;
+            transition: 0.2s ease;
+            box-shadow: 0 4px 12px rgba(255, 77, 109, 0.3);
         }
-        .btn:hover { background: #c71585; transform: translateY(-2px); }
+        .btn:active { transform: scale(0.95); }
 
-        /* Cursor */
+        /* Custom Cursor - High Performance */
         #cursor {
             position: fixed;
-            width: 20px; height: 20px;
+            width: 18px; height: 18px;
             background: #ff4d6d;
             clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
             pointer-events: none;
@@ -135,28 +148,16 @@ HTML_TEMPLATE = """
             transform: translate(-50%, -50%);
         }
 
-        /* Floating Hearts (No Zoom) */
-        .heart-float {
-            position: absolute;
-            color: #ff4d6d;
-            pointer-events: none;
-            animation: moveUp 6s linear infinite;
-        }
-        @keyframes moveUp {
-            from { transform: translateY(110vh); opacity: 1; }
-            to { transform: translateY(-10vh); opacity: 0; }
-        }
-
         .screen { display: none; }
-        .active { display: block; animation: fadeIn 0.5s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .active { display: block; animation: smoothFade 0.4s ease-out; }
+        @keyframes smoothFade { from { opacity: 0; } to { opacity: 1; } }
 
     </style>
 </head>
 <body>
 
     <div id="cursor"></div>
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop preload="auto">
         <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tanishk_Bagchi/Raataan_Lambiyan.mp3" type="audio/mpeg">
     </audio>
 
@@ -181,8 +182,8 @@ HTML_TEMPLATE = """
 
         <div id="page3" class="screen">
             <h1>Be Mine?</h1>
-            <p class="typing-text">Zoe, kya aap hamesha mere saath rahoge? Will you be my Valentine forever? ❤️</p>
-            <div style="display:flex; justify-content:center; gap:15px; position:relative;">
+            <p class="typing-text">Zoe, meri har khushi aap se shuru hoti hai. Kya hamesha mere saath rahoge? ❤️</p>
+            <div style="display:flex; justify-content:center; gap:12px; position:relative;">
                 <button class="btn" onclick="alert('I Love You Too, Zoe Jaan! 😘😘😘')">YES! ❤️</button>
                 <button class="btn" id="noBtn" style="background:#888;" onmouseover="moveNoButton()">NO</button>
             </div>
@@ -195,9 +196,17 @@ HTML_TEMPLATE = """
 
     <script>
         const cursor = document.getElementById('cursor');
+        const bgMusic = document.getElementById('bgMusic');
+
+        // Throttle Mousemove for Performance
+        let lastMove = 0;
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            const now = Date.now();
+            if (now - lastMove > 10) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                lastMove = now;
+            }
         });
 
         const messages = {
@@ -209,18 +218,18 @@ HTML_TEMPLATE = """
             let i = 0;
             const el = document.getElementById(elementId);
             el.innerHTML = "";
-            function type() {
+            const interval = setInterval(() => {
                 if (i < text.length) {
                     el.innerHTML += text.charAt(i);
                     i++;
-                    setTimeout(type, 50);
+                } else {
+                    clearInterval(interval);
                 }
-            }
-            type();
+            }, 40);
         }
 
         function startApp() {
-            document.getElementById('bgMusic').play();
+            bgMusic.play().catch(() => console.log("Music blocked"));
             nextPage(2);
         }
 
@@ -233,19 +242,21 @@ HTML_TEMPLATE = """
         function moveNoButton() {
             const btn = document.getElementById('noBtn');
             btn.style.position = 'fixed';
-            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-            btn.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+            btn.style.left = (Math.random() * (window.innerWidth - 80)) + 'px';
+            btn.style.top = (Math.random() * (window.innerHeight - 40)) + 'px';
         }
 
-        setInterval(() => {
+        // Optimized Particle Creation
+        function createHeart() {
             const h = document.createElement('div');
             h.className = 'heart-float';
             h.innerHTML = '❤️';
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.fontSize = Math.random() * 20 + 10 + 'px';
+            h.style.fontSize = (Math.random() * 15 + 10) + 'px';
             document.body.appendChild(h);
-            setTimeout(() => h.remove(), 6000);
-        }, 300);
+            setTimeout(() => h.remove(), 5000);
+        }
+        setInterval(createHeart, 400); // Thoda gap rakha hai taaki hang na ho
 
         typeEffect('type1', messages.type1);
     </script>
