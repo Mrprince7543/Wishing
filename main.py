@@ -9,7 +9,7 @@ HTML_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Surprise for Zoe â¤ï¸</title>
+    <title>Special Surprise for Zoe ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
     <style>
         /* Smooth Rendering & Hardware Acceleration */
@@ -197,7 +197,7 @@ HTML_TEMPLATE = """
         <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tanishk_Bagchi/Raataan_Lambiyan.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="top-title">Happy Valentine's Day Zoe ðŸ˜˜</div>
+    <div class="top-title">Happy Valentine's Day Zoe 😘</div>
 
     <div class="header-box">
         <h2>REHAN LOVES ZOE</h2>
@@ -208,48 +208,41 @@ HTML_TEMPLATE = """
         
         <div class="content-inner">
             <div id="page1" class="screen active">
-                <h1>Hi Jaan â¤ï¸</h1>
+                <h1>Hi Jaan ❤️</h1>
                 <p class="typing-text" id="type1">Click niche karo ek surprise hai...</p>
-                <button class="btn" onclick="startApp()">START SURPRISE âœ¨</button>
+                <button class="btn" onclick="startApp()">START SURPRISE ✨</button>
             </div>
 
             <div id="page2" class="screen">
                 <h1 style="font-size: 3rem;">Beautiful</h1>
                 <p class="typing-text" id="type2"></p>
-                <button class="btn" onclick="nextPage(3)">Aage Dekho ðŸŒ¹</button>
-            </div>
-            
-            <div id="page2" class="screen">
-                <h1 style="font-size: 3rem;">Beautiful</h1>
-                <p class="typing-text" id="type2"></p>
-                <button class="btn" onclick="nextPage(3)">Aage Dekho ðŸŒ¹</button>
-            </div>
-            
-            <div id="page2" class="screen">
-                <h1 style="font-size: 3rem;">Beautiful</h1>
-                <p class="typing-text" id="type2"></p>
-                <button class="btn" onclick="nextPage(3)">Aage Dekho ðŸŒ¹</button>
-            </div>
-            
-            <div id="page2" class="screen">
-                <h1 style="font-size: 3rem;">Beautiful</h1>
-                <p class="typing-text" id="type2"></p>
-                <button class="btn" onclick="nextPage(3)">Aage Dekho ðŸŒ¹</button>
+                <button class="btn" onclick="nextPage(3)">Aage Dekho 🌹</button>
             </div>
 
             <div id="page3" class="screen">
                 <h1 style="font-size: 2.8rem;">Be Mine?</h1>
-                <p class="typing-text">Zoe, kya hamesha mere saath rahoge? Will you be my Valentine forever? â¤ï¸</p>
+                <p class="typing-text">Zoe, kya hamesha mere saath rahoge? Will you be my Valentine forever? ❤️</p>
                 <div style="display:flex; justify-content:center; gap:12px; position:relative;">
-                    <button class="btn" onclick="alert('I Love You Too, Zoe Jaan! ðŸ˜˜ðŸ˜˜ðŸ˜˜')">YES! â¤ï¸</button>
+                    <button class="btn" onclick="alert('I Love You Too, Zoe Jaan! 😘😘😘')">YES! ❤️</button>
                     <button class="btn" id="noBtn" style="background:#444; border:none;" onmouseover="moveNoButton()">NO</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <div id="page3" class="screen">
+                <h1 style="font-size: 2.8rem;">Be Mine?</h1>
+                <p class="typing-text">Zoe, kya hamesha mere saath rahoge? Will you be my Valentine forever? ❤️</p>
+                <div style="display:flex; justify-content:center; gap:12px; position:relative;">
+                    <button class="btn" onclick="alert('I Love You Too, Zoe Jaan! 😘😘😘')">YES! ❤️</button>
+                    <button class="btn" id="noBtn" style="background:#444; border:none;" onmouseover="moveNoButton()">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="footer-box">
-        <p>ðŸ’– I LOVE YOU MERI JAAN ZOE VERMA ðŸ’–</p>
+        <p>💖 I LOVE YOU MERI JAAN ZOE VERMA 💖</p>
     </div>
 
     <script>
@@ -271,8 +264,6 @@ HTML_TEMPLATE = """
         const messages = {
             type1: "Aapke liye ek chota sa digital tohfa... Ready ho?",
             type2: "Aapki smile meri poori duniya hai, aur aap meri zindagi ka sabse pyara hissa ho."
-            type3: "Aapki smile meri poori duniya hai, aur aap meri zindagi ka sabse pyara hissa ho."
-            type4: "Aapki smile meri poori duniya hai, aur aap meri zindagi ka sabse pyara hissa ho."
         };
 
         function typeEffect(elementId, text) {
@@ -318,7 +309,7 @@ HTML_TEMPLATE = """
             if (document.querySelectorAll('.heart-float').length > 10) return;
             const h = document.createElement('div');
             h.className = 'heart-float';
-            h.innerHTML = 'â¤ï¸';
+            h.innerHTML = '❤️';
             h.style.left = Math.random() * 100 + 'vw';
             h.style.fontSize = (Math.random() * 12 + 10) + 'px';
             document.body.appendChild(h);
