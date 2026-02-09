@@ -2,7 +2,7 @@ from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# REHAN LOVES ZOE - THE FINAL STABLE & SMOOTH MASTERPIECE
+# REHAN LOVES ZOE - 8 PAGE ULTIMATE SMOOTH EDITION
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,6 @@ HTML_TEMPLATE = """
     <title>Special Surprise for Zoe ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
     <style>
-        /* Smooth Rendering & Hardware Acceleration */
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; -webkit-tap-highlight-color: transparent; }
         
         body {
@@ -26,44 +25,34 @@ HTML_TEMPLATE = """
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
             padding: 10px;
-            will-change: background;
         }
 
-        /* Top Title - Direct Glow Style */
         .top-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.3rem;
+            font-size: 2.1rem;
             color: #fff;
             text-align: center;
-            margin-bottom: 10px;
-            text-shadow: 0 0 12px #ff0055, 0 0 25px #ff0055;
+            margin-bottom: 8px;
+            text-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
             z-index: 20;
         }
 
-        /* Rehan Loves Zoe - Fixed Header */
         .header-box {
             background: rgba(255, 77, 109, 0.95);
             border: 2px solid #fff;
             padding: 8px 30px;
             border-radius: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             z-index: 20;
-            text-align: center;
         }
-        .header-box h2 {
-            font-size: 1.4rem;
-            color: #fff;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-        }
+        .header-box h2 { font-size: 1.3rem; color: #fff; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* MAIN CONTAINER - CUSTOM ZOE BACKGROUND */
         .love-card {
             position: relative;
             width: 100%;
             max-width: 500px;
-            height: 380px;
+            height: 400px;
             border-radius: 25px;
             z-index: 5;
             border: 3.5px solid #fff;
@@ -74,7 +63,6 @@ HTML_TEMPLATE = """
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            will-change: transform;
         }
 
         .glass-overlay {
@@ -85,36 +73,29 @@ HTML_TEMPLATE = """
             z-index: 1;
         }
 
-        .content-inner {
-            position: relative;
-            z-index: 2;
-            width: 92%;
-            text-align: center;
-        }
+        .content-inner { position: relative; z-index: 2; width: 92%; text-align: center; }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             color: #ffffff;
             margin-bottom: 8px;
             text-shadow: 2px 2px 15px #ff0055;
         }
 
         .typing-text {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #fff;
             font-weight: 700;
-            min-height: 75px;
+            min-height: 85px;
             text-shadow: 1px 1px 10px #000;
             line-height: 1.3;
         }
 
-        /* FOOTER BOX - ATTRACTIVE & PERFECTLY CENTERED */
         .footer-box {
-            margin-top: 25px;
+            margin-top: 20px;
             background: linear-gradient(90deg, #ff4d6d, #ff758f, #ff4d6d);
-            background-size: 200% auto;
-            padding: 15px 35px;
+            padding: 12px 30px;
             border-radius: 50px;
             border: 2px solid #fff;
             box-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
@@ -123,41 +104,25 @@ HTML_TEMPLATE = """
             justify-content: center;
             align-items: center;
             text-align: center;
-            min-width: 300px;
-            animation: gradientMove 4s linear infinite;
+            min-width: 280px;
         }
+        .footer-box p { font-weight: 800; color: #fff; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .footer-box p {
-            font-weight: 800;
-            color: #fff;
-            font-size: 1rem;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            width: 100%;
-        }
-
-        /* Buttons */
         .btn {
             background: #ff4d6d;
             color: white;
             border: 2px solid #fff;
-            padding: 12px 35px;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 800;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: 0.2s ease;
         }
         .btn:active { transform: scale(0.95); }
 
-        /* Cursor */
         #cursor {
             position: fixed;
             width: 20px; height: 20px;
@@ -166,17 +131,15 @@ HTML_TEMPLATE = """
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            filter: drop-shadow(0 0 6px #ff4d6d);
+            filter: drop-shadow(0 0 5px #ff4d6d);
         }
 
-        /* Floating Particles (Performance Optimized) */
         .heart-float {
             position: absolute;
             color: #fff;
             pointer-events: none;
             animation: moveUp 5s linear forwards;
             z-index: 1;
-            will-change: transform;
         }
         @keyframes moveUp {
             0% { transform: translateY(110vh); opacity: 0; }
@@ -192,101 +155,91 @@ HTML_TEMPLATE = """
 <body>
 
     <div id="cursor"></div>
-    
     <audio id="bgMusic" loop preload="auto">
         <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Tanishk_Bagchi/Raataan_Lambiyan.mp3" type="audio/mpeg">
     </audio>
 
     <div class="top-title">Happy Valentine's Day Zoe 😘</div>
-
-    <div class="header-box">
-        <h2>REHAN LOVES ZOE</h2>
-    </div>
+    <div class="header-box"><h2>REHAN LOVES ZOE</h2></div>
 
     <div class="love-card">
         <div class="glass-overlay"></div>
-        
         <div class="content-inner">
             <div id="page1" class="screen active">
                 <h1>Hi Jaan ❤️</h1>
-                <p class="typing-text" id="type1">Click niche karo ek surprise hai...</p>
+                <p class="typing-text" id="type1">Aapke liye ek special surprise wait kar raha hai...</p>
                 <button class="btn" onclick="startApp()">START SURPRISE ✨</button>
             </div>
-
             <div id="page2" class="screen">
-                <h1 style="font-size: 3rem;">Beautiful</h1>
+                <h1>The Smile</h1>
                 <p class="typing-text" id="type2"></p>
                 <button class="btn" onclick="nextPage(3)">Aage Dekho 🌹</button>
             </div>
-
             <div id="page3" class="screen">
-                <h1 style="font-size: 2.8rem;">Be Mine?</h1>
-                <p class="typing-text">Zoe, kya hamesha mere saath rahoge? Will you be my Valentine forever? ❤️</p>
-                <div style="display:flex; justify-content:center; gap:12px; position:relative;">
-                    <button class="btn" onclick="alert('I Love You Too, Zoe Jaan! 😘😘😘')">YES! ❤️</button>
-                    <button class="btn" id="noBtn" style="background:#444; border:none;" onmouseover="moveNoButton()">NO</button>
+                <h1>Your Voice</h1>
+                <p class="typing-text" id="type3"></p>
+                <button class="btn" onclick="nextPage(4)">Wait, One More... 💖</button>
+            </div>
+            <div id="page4" class="screen">
+                <h1>The Magic</h1>
+                <p class="typing-text" id="type4"></p>
+                <button class="btn" onclick="nextPage(5)">Dekhte Raho ✨</button>
+            </div>
+            <div id="page5" class="screen">
+                <h1>My World</h1>
+                <p class="typing-text" id="type5"></p>
+                <button class="btn" onclick="nextPage(6)">Almost There... 🌹</button>
+            </div>
+            <div id="page6" class="screen">
+                <h1>Promises</h1>
+                <p class="typing-text" id="type6"></p>
+                <button class="btn" onclick="nextPage(7)">Final Page 💍</button>
+            </div>
+            <div id="page7" class="screen">
+                <h1>Be Mine?</h1>
+                <p class="typing-text">Zoe, kya aap hamesha mere saath rahoge? Will you be mine forever? ❤️</p>
+                <div style="display:flex; justify-content:center; gap:10px; position:relative;">
+                    <button class="btn" onclick="sayYes()">YES! ❤️</button>
+                    <button class="btn" id="noBtn" style="background:#444;" onmouseover="moveNoButton()">NO</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="page3" class="screen">
-                <h1 style="font-size: 2.8rem;">Be Mine?</h1>
-                <p class="typing-text">Zoe, kya hamesha mere saath rahoge? Will you be my Valentine forever? ❤️</p>
-                <div style="display:flex; justify-content:center; gap:12px; position:relative;">
-                    <button class="btn" onclick="alert('I Love You Too, Zoe Jaan! 😘😘😘')">YES! ❤️</button>
-                    <button class="btn" id="noBtn" style="background:#444; border:none;" onmouseover="moveNoButton()">NO</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer-box">
-        <p>💖 I LOVE YOU MERI JAAN ZOE VERMA 💖</p>
-    </div>
+    <div class="footer-box"><p>💖 I LOVE YOU MERI JAAN ZOE VERMA 💖</p></div>
 
     <script>
         const cursor = document.getElementById('cursor');
         const music = document.getElementById('bgMusic');
 
-        // Throttled mouse tracking for smoothness
-        let moveTimer;
         document.addEventListener('mousemove', (e) => {
-            if (!moveTimer) {
-                moveTimer = setTimeout(() => {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
-                    moveTimer = null;
-                }, 10);
-            }
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
         });
 
         const messages = {
-            type1: "Aapke liye ek chota sa digital tohfa... Ready ho?",
-            type2: "Aapki smile meri poori duniya hai, aur aap meri zindagi ka sabse pyara hissa ho."
+            type2: "Aapki smile meri duniya hai, aur aap meri zindagi ka sabse pyara hissa ho.",
+            type3: "Aapki baatein sunna mujhe sukoon deta hai. Har pal bas aapka hi khayal rehta hai.",
+            type4: "Jaadu hai aapki aankhon mein, jab bhi dekhta hoon, khud ko bhool jata hoon.",
+            type5: "Zindagi mein sab kuch mil gaya, jab se aap mile. Ab kuch aur nahi chahiye.",
+            type6: "Wada hai mera, har khushi aur har gham mein aapka hath kabhi nahi chhodunga."
         };
 
         function typeEffect(elementId, text) {
             let i = 0;
             const el = document.getElementById(elementId);
             el.innerHTML = "";
-            function type() {
+            const timer = setInterval(() => {
                 if (i < text.length) {
                     el.innerHTML += text.charAt(i);
                     i++;
-                    setTimeout(type, 45);
-                }
-            }
-            type();
+                } else { clearInterval(timer); }
+            }, 40);
         }
 
         function startApp() {
-            // Unmute and Play Audio
             music.play().catch(() => {
-                // Fallback for strict browsers
-                music.muted = true;
-                music.play();
-                music.muted = false;
+                window.addEventListener('click', () => music.play(), {once: true});
             });
             nextPage(2);
         }
@@ -297,27 +250,31 @@ HTML_TEMPLATE = """
             if(messages['type'+num]) typeEffect('type'+num, messages['type'+num]);
         }
 
+        function sayYes() {
+            alert('I Love You Too, Zoe Jaan! 😘😘😘');
+            setInterval(() => {
+                createHeart();
+            }, 100);
+        }
+
         function moveNoButton() {
             const btn = document.getElementById('noBtn');
             btn.style.position = 'fixed';
-            btn.style.left = (Math.random() * (window.innerWidth - 100)) + 'px';
-            btn.style.top = (Math.random() * (window.innerHeight - 80)) + 'px';
+            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            btn.style.top = Math.random() * (window.innerHeight - 100) + 'px';
         }
 
-        // Lightweight Particle System
         function createHeart() {
             if (document.querySelectorAll('.heart-float').length > 10) return;
             const h = document.createElement('div');
             h.className = 'heart-float';
             h.innerHTML = '❤️';
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.fontSize = (Math.random() * 12 + 10) + 'px';
+            h.style.fontSize = (Math.random() * 10 + 10) + 'px';
             document.body.appendChild(h);
-            setTimeout(() => h.remove(), 5000);
+            setTimeout(() => h.remove(), 4000);
         }
-        setInterval(createHeart, 800);
-
-        typeEffect('type1', messages.type1);
+        setInterval(createHeart, 1000);
     </script>
 </body>
 </html>
@@ -328,5 +285,4 @@ def home():
     return render_template_string(HTML_TEMPLATE)
 
 if __name__ == '__main__':
-    # Host on 0.0.0.0 and Port 5000 as per request
     app.run(host='0.0.0.0', port=5000)
