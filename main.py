@@ -2,14 +2,13 @@ from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# REHAN LOVES ZOE - 8 PAGE ULTIMATE SMOOTH EDITION
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Special Surprise for Zoe ❤️</title>
+    <title>Ultimate Surprise for Zoe Verma ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; -webkit-tap-highlight-color: transparent; }
@@ -29,11 +28,11 @@ HTML_TEMPLATE = """
 
         .top-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.1rem;
+            font-size: 2rem;
             color: #fff;
             text-align: center;
             margin-bottom: 8px;
-            text-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
+            text-shadow: 0 0 10px #ff0055;
             z-index: 20;
         }
 
@@ -46,7 +45,7 @@ HTML_TEMPLATE = """
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             z-index: 20;
         }
-        .header-box h2 { font-size: 1.3rem; color: #fff; letter-spacing: 2px; text-transform: uppercase; }
+        .header-box h2 { font-size: 1.2rem; color: #fff; letter-spacing: 2px; text-transform: uppercase; }
 
         .love-card {
             position: relative;
@@ -63,6 +62,7 @@ HTML_TEMPLATE = """
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            will-change: transform;
         }
 
         .glass-overlay {
@@ -77,19 +77,19 @@ HTML_TEMPLATE = """
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             color: #ffffff;
             margin-bottom: 8px;
             text-shadow: 2px 2px 15px #ff0055;
         }
 
         .typing-text {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #fff;
             font-weight: 700;
-            min-height: 85px;
+            min-height: 80px;
             text-shadow: 1px 1px 10px #000;
-            line-height: 1.3;
+            line-height: 1.4;
         }
 
         .footer-box {
@@ -100,25 +100,20 @@ HTML_TEMPLATE = """
             border: 2px solid #fff;
             box-shadow: 0 0 20px rgba(255, 77, 109, 0.8);
             z-index: 20;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-            min-width: 280px;
         }
-        .footer-box p { font-weight: 800; color: #fff; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-box p { font-weight: 800; color: #fff; font-size: 0.9rem; text-transform: uppercase; }
 
         .btn {
             background: #ff4d6d;
             color: white;
             border: 2px solid #fff;
-            padding: 12px 30px;
+            padding: 12px 25px;
             border-radius: 50px;
             font-size: 1rem;
             font-weight: 800;
             cursor: pointer;
             margin-top: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: 0.2s ease;
         }
         .btn:active { transform: scale(0.95); }
@@ -131,7 +126,6 @@ HTML_TEMPLATE = """
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            filter: drop-shadow(0 0 5px #ff4d6d);
         }
 
         .heart-float {
@@ -143,7 +137,6 @@ HTML_TEMPLATE = """
         }
         @keyframes moveUp {
             0% { transform: translateY(110vh); opacity: 0; }
-            10% { opacity: 0.9; }
             100% { transform: translateY(-10vh); opacity: 0; }
         }
 
@@ -167,38 +160,19 @@ HTML_TEMPLATE = """
         <div class="content-inner">
             <div id="page1" class="screen active">
                 <h1>Hi Jaan ❤️</h1>
-                <p class="typing-text" id="type1">Aapke liye ek special surprise wait kar raha hai...</p>
-                <button class="btn" onclick="startApp()">START SURPRISE ✨</button>
+                <p class="typing-text" id="type1">Zoe, aapke liye ek bahut lamba surprise taiyar kiya hai...</p>
+                <button class="btn" onclick="startApp()">SHURU KAREIN? ✨</button>
             </div>
-            <div id="page2" class="screen">
-                <h1>The Smile</h1>
-                <p class="typing-text" id="type2"></p>
-                <button class="btn" onclick="nextPage(3)">Aage Dekho 🌹</button>
+            <div id="dynamic-content" class="screen">
+                <h1 id="dyn-h1"></h1>
+                <p class="typing-text" id="dyn-p"></p>
+                <button class="btn" id="dyn-btn" onclick="nextStep()">AAGE DEKHO 🌹</button>
             </div>
-            <div id="page3" class="screen">
-                <h1>Your Voice</h1>
-                <p class="typing-text" id="type3"></p>
-                <button class="btn" onclick="nextPage(4)">Wait, One More... 💖</button>
-            </div>
-            <div id="page4" class="screen">
-                <h1>The Magic</h1>
-                <p class="typing-text" id="type4"></p>
-                <button class="btn" onclick="nextPage(5)">Dekhte Raho ✨</button>
-            </div>
-            <div id="page5" class="screen">
-                <h1>My World</h1>
-                <p class="typing-text" id="type5"></p>
-                <button class="btn" onclick="nextPage(6)">Almost There... 🌹</button>
-            </div>
-            <div id="page6" class="screen">
-                <h1>Promises</h1>
-                <p class="typing-text" id="type6"></p>
-                <button class="btn" onclick="nextPage(7)">Final Page 💍</button>
-            </div>
-            <div id="page7" class="screen">
+            
+            <div id="final-page" class="screen">
                 <h1>Be Mine?</h1>
-                <p class="typing-text">Zoe, kya aap hamesha mere saath rahoge? Will you be mine forever? ❤️</p>
-                <div style="display:flex; justify-content:center; gap:10px; position:relative;">
+                <p class="typing-text">Zoe Verma, kya hamesha mere saath rahoge? Will you be mine forever? ❤️</p>
+                <div style="display:flex; justify-content:center; gap:10px;">
                     <button class="btn" onclick="sayYes()">YES! ❤️</button>
                     <button class="btn" id="noBtn" style="background:#444;" onmouseover="moveNoButton()">NO</button>
                 </div>
@@ -211,50 +185,64 @@ HTML_TEMPLATE = """
     <script>
         const cursor = document.getElementById('cursor');
         const music = document.getElementById('bgMusic');
+        let currentPage = 0;
+
+        const story = [
+            { h: "The Smile", p: "Aapki smile meri poori duniya ko roshan kar deti hai, Miss Zoe." },
+            { h: "Pure Soul", p: "Maine duniya dekhi, par aap jaisa saaf dil aaj tak kahin nahi mila." },
+            { h: "My Dream", p: "Har raat aapka hi khayal aata hai, aap mera sabse haseen khwaab ho." },
+            { h: "Special", p: "Aap sirf ek ladki nahi, aap meri zindagi ki zarurat ban gaye ho." },
+            { h: "The Magic", p: "Aapki aankhon mein wo jaadu hai jo mujhe har baar pagal kar deta hai." },
+            { h: "Peace", p: "Aap se baat karke jo sukoon milta hai, wo poori duniya mein kahin nahi." },
+            { h: "Destiny", p: "Mujhe lagta hai humara milna koi ittefaq nahi, naseeb ka faisla tha." },
+            { h: "Happiness", p: "Aapki ek khushi ke liye main poori duniya se lad sakta hoon." },
+            { h: "The Voice", p: "Jab aap mera naam lete ho, toh dil ki dhadkan thoda aur tez ho jati hai." },
+            { h: "Wada", p: "Main kabhi aapka hath nahi chhodunga, chahe rasta kitna bhi mushkil ho." },
+            { h: "Together", p: "Humein sath dekhna hi meri sabse badi tamanna hai, har pal, har jagah." },
+            { h: "My Queen", p: "Aap mere dil ki rani ho, aur hamesha rahoge, meri jaan." },
+            { h: "Forever", p: "Pyar toh sab karte hain, par main aapko hamesha pooja karunga." },
+            { h: "The End?", p: "Nahi... Ye toh sirf humari nayi shuruat hai. Bas ek aakhri baat..." }
+        ];
 
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        const messages = {
-            type2: "Aapki smile meri duniya hai, aur aap meri zindagi ka sabse pyara hissa ho.",
-            type3: "Aapki baatein sunna mujhe sukoon deta hai. Har pal bas aapka hi khayal rehta hai.",
-            type4: "Jaadu hai aapki aankhon mein, jab bhi dekhta hoon, khud ko bhool jata hoon.",
-            type5: "Zindagi mein sab kuch mil gaya, jab se aap mile. Ab kuch aur nahi chahiye.",
-            type6: "Wada hai mera, har khushi aur har gham mein aapka hath kabhi nahi chhodunga."
-        };
-
-        function typeEffect(elementId, text) {
+        function typeEffect(element, text) {
             let i = 0;
-            const el = document.getElementById(elementId);
-            el.innerHTML = "";
-            const timer = setInterval(() => {
+            element.innerHTML = "";
+            clearInterval(window.typingInterval);
+            window.typingInterval = setInterval(() => {
                 if (i < text.length) {
-                    el.innerHTML += text.charAt(i);
+                    element.innerHTML += text.charAt(i);
                     i++;
-                } else { clearInterval(timer); }
-            }, 40);
+                } else { clearInterval(window.typingInterval); }
+            }, 35);
         }
 
         function startApp() {
-            music.play().catch(() => {
-                window.addEventListener('click', () => music.play(), {once: true});
-            });
-            nextPage(2);
+            music.play().catch(() => { window.addEventListener('click', () => music.play(), {once: true}); });
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('dynamic-content').classList.add('active');
+            nextStep();
         }
 
-        function nextPage(num) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('page' + num).classList.add('active');
-            if(messages['type'+num]) typeEffect('type'+num, messages['type'+num]);
+        function nextStep() {
+            if (currentPage < story.length) {
+                const data = story[currentPage];
+                document.getElementById('dyn-h1').innerText = data.h;
+                typeEffect(document.getElementById('dyn-p'), data.p);
+                currentPage++;
+            } else {
+                document.getElementById('dynamic-content').classList.remove('active');
+                document.getElementById('final-page').classList.add('active');
+            }
         }
 
         function sayYes() {
-            alert('I Love You Too, Zoe Jaan! 😘😘😘');
-            setInterval(() => {
-                createHeart();
-            }, 100);
+            alert('I Love You Tooo Much, Zoe Jaan! 😘😘😘');
+            setInterval(createHeart, 150);
         }
 
         function moveNoButton() {
@@ -265,16 +253,17 @@ HTML_TEMPLATE = """
         }
 
         function createHeart() {
-            if (document.querySelectorAll('.heart-float').length > 10) return;
+            if (document.querySelectorAll('.heart-float').length > 12) return;
             const h = document.createElement('div');
             h.className = 'heart-float';
             h.innerHTML = '❤️';
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            h.style.fontSize = (Math.random() * 15 + 10) + 'px';
             document.body.appendChild(h);
             setTimeout(() => h.remove(), 4000);
         }
-        setInterval(createHeart, 1000);
+        setInterval(createHeart, 800);
+        typeEffect(document.getElementById('type1'), "Zoe, aapke liye ek bahut lamba surprise taiyar kiya hai...");
     </script>
 </body>
 </html>
