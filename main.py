@@ -2,22 +2,21 @@ from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# REHAN LOVES ZOE - 32-PAGE ULTIMATE PERFORMANCE EDITION
+# REHAN LOVES ZOE - MEGA 32-PAGE SMOOTH EDITION
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>32 Pages of Love for Zoe Verma ❤️</title>
+    <title>For LOL ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
     <style>
-        /* Smooth Performance Fixes */
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; -webkit-tap-highlight-color: transparent; }
         
         body {
             background: #ff758f;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            background: linear-gradient(135deg, #ff4d6d 0%, #ff9a9e 50%, #fecfef 100%);
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -26,41 +25,41 @@ HTML_TEMPLATE = """
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
             padding: 10px;
-            will-change: background;
         }
 
         .top-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             color: #fff;
             text-align: center;
-            margin-bottom: 8px;
-            text-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px #ff0055, 0 0 30px #ff0055;
             z-index: 20;
         }
 
         .header-box {
-            background: rgba(255, 77, 109, 0.95);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             border: 2px solid #fff;
-            padding: 8px 25px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 10px 35px;
+            border-radius: 50px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             z-index: 20;
         }
-        .header-box h2 { font-size: 1.1rem; color: #fff; letter-spacing: 2px; text-transform: uppercase; }
+        .header-box h2 { font-size: 1.3rem; color: #fff; letter-spacing: 3px; text-transform: uppercase; }
 
-        /* Optimized Card */
+        /* MAIN CONTAINER WITH YOUR IMAGE */
         .love-card {
             position: relative;
             width: 100%;
-            max-width: 500px;
-            height: 400px;
-            border-radius: 25px;
+            max-width: 550px;
+            height: 450px;
+            border-radius: 30px;
             z-index: 5;
-            border: 3.5px solid #fff;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.3);
-            background: url('https://i.ibb.co/rGT6qF7r/Picture-Unlock-TOI-521963-user0-pictureunlock.webp') center/cover no-repeat;
+            border: 5px solid #fff;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            background: url('https://i.ibb.co/1YTf7R36/FB-IMG-16249452197243361.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -72,68 +71,69 @@ HTML_TEMPLATE = """
         .glass-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4); /* Overlay for text readability */
             backdrop-filter: blur(1.5px);
             z-index: 1;
         }
 
-        .content-inner { position: relative; z-index: 2; width: 92%; text-align: center; }
+        .content-inner { position: relative; z-index: 2; width: 90%; text-align: center; }
 
         h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
+            font-size: 4rem;
             color: #ffffff;
-            margin-bottom: 8px;
-            text-shadow: 2px 2px 15px #ff0055;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 20px #ff0055;
         }
 
         .typing-text {
-            font-size: 1.15rem;
+            font-size: 1.5rem;
             color: #fff;
             font-weight: 700;
-            min-height: 80px;
-            text-shadow: 1px 1px 10px #000;
+            min-height: 90px;
+            text-shadow: 2px 2px 10px #000;
             line-height: 1.4;
         }
 
-        /* Attractive Footer - Adjusted */
+        /* ATTRACTIVE FOOTER */
         .footer-box {
-            margin-top: 15px;
-            background: linear-gradient(90deg, #ff4d6d, #ff758f, #ff4d6d);
-            padding: 12px 25px;
-            border-radius: 50px;
-            border: 2px solid #fff;
-            box-shadow: 0 0 15px rgba(255, 77, 109, 0.7);
+            margin-top: 20px;
+            background: white;
+            padding: 15px 40px;
+            border-radius: 60px;
+            border: 3px solid #ff4d6d;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
             z-index: 20;
-            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .footer-box p { font-weight: 800; color: #fff; font-size: 0.85rem; text-transform: uppercase; margin: 0; }
+        .footer-box p { font-weight: 800; color: #ff4d6d; font-size: 1rem; text-transform: uppercase; margin: 0; letter-spacing: 1px;}
 
         .btn {
-            background: #ff4d6d;
-            color: white;
-            border: 2px solid #fff;
-            padding: 10px 25px;
+            background: #fff;
+            color: #ff4d6d;
+            border: none;
+            padding: 15px 35px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             font-weight: 800;
             cursor: pointer;
-            margin-top: 10px;
-            transition: transform 0.2s;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
         }
-        .btn:active { transform: scale(0.9); }
+        .btn:hover { background: #ff4d6d; color: #fff; transform: scale(1.1); }
 
         #cursor {
             position: fixed;
-            width: 18px; height: 18px;
+            width: 20px; height: 20px;
             background: #fff;
             clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
+            filter: drop-shadow(0 0 5px #ff4d6d);
         }
 
         .heart-float {
@@ -142,7 +142,6 @@ HTML_TEMPLATE = """
             pointer-events: none;
             animation: moveUp 5s linear forwards;
             z-index: 1;
-            will-change: transform;
         }
         @keyframes moveUp {
             0% { transform: translateY(110vh); opacity: 0; }
@@ -150,7 +149,8 @@ HTML_TEMPLATE = """
         }
 
         .screen { display: none; width: 100%; }
-        .active { display: block; }
+        .active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -161,14 +161,14 @@ HTML_TEMPLATE = """
     </audio>
 
     <div class="top-title">Happy Valentine's Day Zoe 😘</div>
-    <div class="header-box"><h2>REHAN LOVES ZOE</h2></div>
+    <div class="header-box"><h2>LOLLOVES LOL</h2></div>
 
     <div class="love-card">
         <div class="glass-overlay"></div>
         <div class="content-inner">
             <div id="page1" class="screen active">
                 <h1>Hi Jaan ❤️</h1>
-                <p class="typing-text" id="type1">Zoe, aapke liye ye duniya ka sabse bada digital surprise hai...</p>
+                <p class="typing-text" id="type1">Zoe, aaj aapke liye 32 pages ka ek haseen safar shuru karte hain...</p>
                 <button class="btn" onclick="startApp()">START JOURNEY ✨</button>
             </div>
             
@@ -179,17 +179,17 @@ HTML_TEMPLATE = """
             </div>
             
             <div id="final-page" class="screen">
-                <h1>Be Mine?</h1>
-                <p class="typing-text">Zoe Verma, 32 messages ke baad bas yahi puchna hai... Kya aap hamesha mere saath rahoge? ❤️</p>
-                <div style="display:flex; justify-content:center; gap:10px;">
+                <h1 style="font-size: 3rem;">Be Mine?</h1>
+                <p class="typing-text">Zoe Verma, kya aap hamesha mere saath rahoge? Will you be mine forever? ❤️</p>
+                <div style="display:flex; justify-content:center; gap:20px;">
                     <button class="btn" onclick="sayYes()">YES! ❤️</button>
-                    <button class="btn" id="noBtn" style="background:#444;" onmouseover="moveNoButton()">NO</button>
+                    <button class="btn" id="noBtn" style="background:#444; color:#fff;" onmouseover="moveNoButton()">NO</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="footer-box"><p>💖 I LOVE YOU MERI JAAN ZOE VERMA 💖</p></div>
+    <div class="footer-box"><p>💖 I LOVE YOU MERI JAAN LOL VERMA 💖</p></div>
 
     <script>
         const cursor = document.getElementById('cursor');
@@ -247,9 +247,7 @@ HTML_TEMPLATE = """
         }
 
         function startApp() {
-            music.play().catch(() => {
-                window.addEventListener('click', () => music.play(), {once: true});
-            });
+            music.play().catch(() => { window.addEventListener('click', () => music.play(), {once: true}); });
             document.getElementById('page1').style.display = 'none';
             document.getElementById('dynamic-content').style.display = 'block';
             nextStep();
@@ -269,7 +267,7 @@ HTML_TEMPLATE = """
 
         function sayYes() {
             alert('I Love You Tooo Much, Zoe Jaan! 😘😘😘');
-            setInterval(createHeart, 150);
+            setInterval(createHeart, 200);
         }
 
         function moveNoButton() {
@@ -280,17 +278,17 @@ HTML_TEMPLATE = """
         }
 
         function createHeart() {
-            if (document.querySelectorAll('.heart-float').length > 10) return;
+            if (document.querySelectorAll('.heart-float').length > 12) return;
             const h = document.createElement('div');
             h.className = 'heart-float';
             h.innerHTML = '❤️';
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            h.style.fontSize = (Math.random() * 20 + 20) + 'px';
             document.body.appendChild(h);
             setTimeout(() => h.remove(), 4000);
         }
         setInterval(createHeart, 1000);
-        typeEffect(document.getElementById('type1'), "Zoe, aapke liye ye duniya ka sabse bada digital surprise hai...");
+        typeEffect(document.getElementById('type1'), "Zoe, aaj aapke liye 32 pages ka ek haseen safar shuru karte hain...");
     </script>
 </body>
 </html>
